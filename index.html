@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="index.js" defer></script>
+    <title>Etch A Sketch</title>
+  </head>
+  <body>
+    <main class="main">
+      <div class="inputs-container">
+        <div class="grid-size-container">
+          <label for="size-input">Grid size</label>
+          <input
+            type="range"
+            class="size-input"
+            id="size-input"
+            oninput="updateSizeValue(this.value)"
+            value="20"
+            min="1"
+            max="100"
+          />
+          <input type="text" class="size-value" value="20" readonly />
+        </div>
+        <div class="grid-color-container">
+          <label for="color-input">Color</label>
+          <input type="color" class="color-input" id="color-input" />
+        </div>
+        <button class="clear-button">Clear</button>
+      </div>
+      <div class="grid-container"></div>
+    </main>
+  </body>
+</html>
