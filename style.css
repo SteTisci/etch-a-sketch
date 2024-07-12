@@ -64,7 +64,8 @@ body {
     overflow: hidden;
 }
 
-.clear-button {
+.clear-button,
+.toggle-border {
     width: 100px;
     height: 30px;
     border: 1px solid rgba(0, 0, 0, 0.5);
@@ -82,5 +83,6 @@ body {
 }
 
 .cell {
-    border: 1px solid black;
+    box-sizing: border-box;
+    border: 1px solid black; 
 }
