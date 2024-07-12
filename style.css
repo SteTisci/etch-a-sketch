@@ -10,7 +10,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    
+    flex-direction: column;
 }
 
 .main {
@@ -56,18 +56,23 @@ body {
 }
 
 .color-input {
+    appearance: none;
+    width: 150px;
+    height: 50px;
     border: none;
-    outline: none;
     background-color: transparent;
-    border-radius: 50px;
-    width: 100px;
-    overflow: hidden;
+}
+
+.color-input::-webkit-color-swatch {
+    border: none;
+    border-radius: 10px;
 }
 
 .clear-button,
-.toggle-border {
-    width: 100px;
-    height: 30px;
+.toggle-border,
+.eraser {
+    width: 150px;
+    height: 40px;
     border: 1px solid rgba(0, 0, 0, 0.5);
     border-radius: 10px;
     background-color: transparent;
