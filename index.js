@@ -8,6 +8,7 @@ const container = document.querySelector(".grid-container");
 const sizeValue = document.querySelector(".size-value");
 const sizeInput = document.querySelector(".size-input");
 const colorInput = document.querySelector(".color-input");
+const borderButton = document.querySelector(".toggle-border");
 const clearButton = document.querySelector(".clear-button");
 
 function createGrid() {
@@ -18,6 +19,7 @@ function createGrid() {
       "style",
       `width: ${100 / currentSize}%; height: ${100 / currentSize}%;`
     );
+    cell.style.border = "1px solid black";
     container.appendChild(cell);
   }
 }
@@ -51,9 +53,20 @@ function clearGrid() {
   createGrid();
 }
 
+function toggleBorder() {
+  container.childNodes.forEach((node) => {
+    if (node.style.border === "1px solid black") {
+      node.style.border = "none";
+    } else {
+      node.style.border = "1px solid black";
+    }
+  });
+}
+
 sizeInput.addEventListener("change", setGridSize);
 container.addEventListener("mouseover", colorSquare);
 clearButton.addEventListener("click", clearGrid);
-colorInput.addEventListener("input", setCurrentColor);
+colorInput.addEventListener("blur", setCurrentColor);
+borderButton.addEventListener("click", toggleBorder);
 
-createGrid();
+document.addEventListener("DOMContentLoaded", createGrid);
