@@ -1,11 +1,10 @@
-const DEFAULT_SIZE = 20;
+const DEFAULT_SIZE = 16;
 const DEFAULT_COLOR = "#000000";
 
 let currentSize = DEFAULT_SIZE;
 let currentColor = DEFAULT_COLOR;
 let isDrawing = false;
 
-// Element references
 const container = document.querySelector(".grid-container");
 const sizeValue = document.querySelector(".size-value");
 const sizeInput = document.querySelector(".size-input");
@@ -18,10 +17,13 @@ const eraserButton = document.querySelector(".eraser");
 function createCell(size) {
   const cell = document.createElement("div");
   cell.classList.add("cell");
-  cell.setAttribute(
-    "style",
-    `width: ${size}; height: ${size}; border: 1px solid black`
-  );
+  cell.style.width = size;
+  cell.style.height = size;
+
+  // Create cell without border if the toggle border button is active
+  if (!isButtonActive(borderButton)) {
+    cell.style.border = "1px solid black";
+  }
   return cell;
 }
 
@@ -51,26 +53,26 @@ function colorSquare(event) {
 
 // Set the current color from the color input
 function setCurrentColor(event) {
-  currentColor = event.target.value;
-}
-
-// Toggle between eraser and current color
-function setEraseColor() {
-  if (currentColor === colorInput.value) {
-    currentColor = "#FFFFFF";
-    eraserButton.style.backgroundColor = "blue";
-  } else {
-    currentColor = colorInput.value;
-    eraserButton.style.backgroundColor = "white";
+  if (!isButtonActive(eraserButton)) {
+    currentColor = event.target.value;
   }
 }
 
+// Toggle between eraser and current color
+function toggleEraser() {
+  if (!isButtonActive(eraserButton)) {
+    currentColor = "#FFFFFF";
+  } else {
+    currentColor = colorInput.value;
+  }
+  toggleButton(eraserButton);
+}
+
 // Update the size value displayed
-function updateSizeValue(value) {
+function updateGridSizeValue(value) {
   sizeValue.value = value;
 }
 
-// Clear the grid by creating a new one
 function clearGrid() {
   createGrid();
 }
@@ -81,6 +83,21 @@ function toggleBorder() {
     node.style.border =
       node.style.border === "1px solid black" ? "none" : "1px solid black";
   });
+  toggleButton(borderButton);
+}
+
+// Check if a button is active or not
+function isButtonActive(button) {
+  return button.classList.contains("active");
+}
+
+// Activate a button by adding the class "active"
+function toggleButton(button) {
+  if (!isButtonActive(button)) {
+    button.classList.add("active");
+  } else {
+    button.classList.remove("active");
+  }
 }
 
 // Event listeners
@@ -89,7 +106,7 @@ function toggleBorder() {
 document.addEventListener("DOMContentLoaded", createGrid);
 
 sizeInput.addEventListener("change", setGridSize);
-eraserButton.addEventListener("click", setEraseColor);
+eraserButton.addEventListener("click", toggleEraser);
 clearButton.addEventListener("click", clearGrid);
 colorInput.addEventListener("blur", setCurrentColor);
 borderButton.addEventListener("click", toggleBorder);
