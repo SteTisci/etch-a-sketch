@@ -24,21 +24,22 @@ colorInput.addEventListener("blur", setCurrentColor);
 borderBtn.addEventListener("click", toggleBorder);
 rainbowBtn.addEventListener("click", toggleRainbowButton);
 
+// Event listener for drawing management
 container.addEventListener("mousedown", startDrawing);
-container.addEventListener("mousemove", colorSquare);
+container.addEventListener("mousemove", draw);
 container.addEventListener("mouseup", stopDrawing);
 // stop drawing if the mouse is released outside the container
 document.body.addEventListener("mouseup", () => (isDrawing = false));
 
 function createCell(size) {
   const cell = document.createElement("div");
-  cell.setAttribute("class", "cell border");
+  cell.setAttribute("class", "cell");
   cell.style.width = size;
   cell.style.height = size;
 
-  // create cell without border if border button is active
-  if (isButtonActive(borderBtn)) {
-    cell.classList.remove("border");
+  // create cell without border if borderBtn is active
+  if (!isButtonActive(borderBtn)) {
+    cell.classList.add("border");
   }
   return cell;
 }
@@ -62,46 +63,48 @@ function setGridSize() {
 
 function startDrawing(event) {
   isDrawing = true;
-  colorSquare(event);
+  draw(event);
 }
 
 function stopDrawing(event) {
   isDrawing = false;
-  colorSquare(event);
+  draw(event);
 }
 
-// Set the color based on the current settings
-// the erase button have priority over buttons and input
-function colorSquare(event) {
+function draw(event) {
+  if (!isDrawing) return;
+
   const square = event.target.closest(".cell");
 
-  if (isDrawing && square) {
-    if (isButtonActive(eraserBtn)) {
-      square.style.backgroundColor = "#FFFFFF"; // Eraser functionality
-    } else if (isButtonActive(rainbowBtn)) {
-      square.style.backgroundColor = rainbowEffect();
-    } else {
-      square.style.backgroundColor = currentColor;
-    }
+  if (square) {
+    square.style.backgroundColor = getDrawingColors(); // Get the colors based on the current settings
+  }
+}
+
+// the erase button have priority over other buttons and input
+function getDrawingColors() {
+  if (isButtonActive(eraserBtn)) {
+    return "#FFFFFF"; // Eraser
+  } else if (isButtonActive(rainbowBtn)) {
+    return rainbowEffect();
+  } else {
+    return currentColor;
   }
 }
 
 // Update the current color only if the eraser is not active
 function setCurrentColor(event) {
-  if (!isButtonActive(eraserBtn)) {
-    currentColor = event.target.value;
-  }
+  currentColor = event.target.value;
 }
 
 function toggleEraser() {
-  currentColor = isButtonActive(eraserBtn) ? colorInput.value : "#FFFFFF";
   toggleButton(eraserBtn);
 }
 
 // Toggle border visibility on all cells
 function toggleBorder() {
-  container.childNodes.forEach((node) => {
-    node.classList.toggle("border");
+  container.querySelectorAll(".cell").forEach((cell) => {
+    cell.classList.toggle("border");
   });
   toggleButton(borderBtn);
 }
