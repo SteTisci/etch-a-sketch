@@ -68,7 +68,8 @@ body {
     border-radius: 10px;
 }
 
-.clear-button,
+.rainbow,
+.clear,
 .toggle-border,
 .eraser {
     width: 150px;
@@ -96,4 +97,9 @@ button.active {
 
 .cell {
     box-sizing: border-box; 
+}
+
+.border {
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
 }
