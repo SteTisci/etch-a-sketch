@@ -9,18 +9,21 @@ const container = document.querySelector(".grid-container");
 const sizeValue = document.querySelector(".size-value");
 const sizeInput = document.querySelector(".size-input");
 const colorInput = document.querySelector(".color-input");
-const borderButton = document.querySelector(".toggle-border");
-const clearButton = document.querySelector(".clear-button");
-const eraserButton = document.querySelector(".eraser");
+const borderBtn = document.querySelector(".toggle-border");
+const rainbowBtn = document.querySelector(".rainbow");
+const clearBtn = document.querySelector(".clear");
+const eraserBtn = document.querySelector(".eraser");
 
+// Create the grid when the page is fully loaded
 document.addEventListener("DOMContentLoaded", createGrid);
-sizeInput.addEventListener("change", setGridSize);
-eraserButton.addEventListener("click", toggleEraser);
-clearButton.addEventListener("click", clearGrid);
-colorInput.addEventListener("blur", setCurrentColor);
-borderButton.addEventListener("click", toggleBorder);
 
-// Event listeners to draw when mouse is pressed and stop when released
+sizeInput.addEventListener("change", setGridSize);
+eraserBtn.addEventListener("click", toggleEraser);
+clearBtn.addEventListener("click", clearGrid);
+colorInput.addEventListener("blur", setCurrentColor);
+borderBtn.addEventListener("click", toggleBorder);
+rainbowBtn.addEventListener("click", toggleRainbowButton);
+
 container.addEventListener("mousedown", startDrawing);
 container.addEventListener("mousemove", colorSquare);
 container.addEventListener("mouseup", stopDrawing);
@@ -29,17 +32,18 @@ document.body.addEventListener("mouseup", () => (isDrawing = false));
 
 function createCell(size) {
   const cell = document.createElement("div");
-  cell.classList.add("cell");
+  cell.setAttribute("class", "cell border");
   cell.style.width = size;
   cell.style.height = size;
 
   // create cell without border if border button is active
-  if (!isButtonActive(borderButton)) {
-    cell.style.border = "1px solid black";
+  if (isButtonActive(borderBtn)) {
+    cell.classList.remove("border");
   }
   return cell;
 }
 
+// Create the grid with the specified size
 function createGrid() {
   container.innerHTML = ""; // Clear the container before creating the grid
   const cellSize = `${100 / currentSize}%`;
@@ -50,6 +54,7 @@ function createGrid() {
   }
 }
 
+// Update the grid size and recreate the grid
 function setGridSize() {
   currentSize = Number(sizeValue.value);
   createGrid();
@@ -65,34 +70,57 @@ function stopDrawing(event) {
   colorSquare(event);
 }
 
+// Set the color based on the current settings
+// the erase button have priority over buttons and input
 function colorSquare(event) {
-  const square = event.target.closest("div.cell");
+  const square = event.target.closest(".cell");
+
   if (isDrawing && square) {
-    square.style.backgroundColor = currentColor;
+    if (isButtonActive(eraserBtn)) {
+      square.style.backgroundColor = "#FFFFFF"; // Eraser functionality
+    } else if (isButtonActive(rainbowBtn)) {
+      square.style.backgroundColor = rainbowEffect();
+    } else {
+      square.style.backgroundColor = currentColor;
+    }
   }
 }
 
+// Update the current color only if the eraser is not active
 function setCurrentColor(event) {
-  if (!isButtonActive(eraserButton)) {
+  if (!isButtonActive(eraserBtn)) {
     currentColor = event.target.value;
   }
 }
 
 function toggleEraser() {
-  currentColor = isButtonActive(eraserButton) ? colorInput.value : "#FFFFFF";
-  toggleButton(eraserButton);
+  currentColor = isButtonActive(eraserBtn) ? colorInput.value : "#FFFFFF";
+  toggleButton(eraserBtn);
 }
 
-function clearGrid() {
-  createGrid();
-}
-
+// Toggle border visibility on all cells
 function toggleBorder() {
   container.childNodes.forEach((node) => {
-    node.style.border =
-      node.style.border === "1px solid black" ? "none" : "1px solid black";
+    node.classList.toggle("border");
   });
-  toggleButton(borderButton);
+  toggleButton(borderBtn);
+}
+
+// Generate a random RGB color
+function rainbowEffect() {
+  const randomRed = Math.floor(Math.random() * 256);
+  const randomGreen = Math.floor(Math.random() * 256);
+  const randomBlue = Math.floor(Math.random() * 256);
+  return `rgb(${randomRed}, ${randomGreen}, ${randomBlue})`;
+}
+
+function toggleRainbowButton() {
+  toggleButton(rainbowBtn);
+}
+
+// Clear the grid by recreating it
+function clearGrid() {
+  createGrid();
 }
 
 function isButtonActive(button) {
@@ -103,7 +131,7 @@ function toggleButton(button) {
   button.classList.toggle("active");
 }
 
-// Update the range input value when changed
+// Update the size value displayed
 function updateGridSizeValue(value) {
   sizeValue.value = value;
 }
