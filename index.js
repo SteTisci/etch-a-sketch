@@ -13,9 +13,7 @@ let currentSize = DEFAULT_SIZE;
 let currentColor = DEFAULT_COLOR;
 let isDrawing = false;
 
-/*
- *    Components
- */
+//    COMPONENTS
 
 const container = document.querySelector(".grid-container");
 const sizeValue = document.querySelector(".size-value");
@@ -26,9 +24,7 @@ const rainbowBtn = document.querySelector(".rainbow");
 const clearBtn = document.querySelector(".clear");
 const eraserBtn = document.querySelector(".eraser");
 
-/*
- *    Event listeners
- */
+//    EVENT LISTENER
 
 // Create the grid when the page is fully loaded
 document.addEventListener("DOMContentLoaded", createGrid);
@@ -47,9 +43,7 @@ container.addEventListener("mouseup", stopDrawing);
 // Stop drawing if the mouse is released outside the container
 document.body.addEventListener("mouseup", () => (isDrawing = false));
 
-/*
- *    Grid creations
- */
+//    GRID CREATION
 
 function createCell(size) {
   const cell = document.createElement("div");
@@ -75,9 +69,12 @@ function createGrid() {
   }
 }
 
-/*
- *    Draw functions
- */
+// Clear the grid by recreating it
+function clearGrid() {
+  createGrid();
+}
+
+//    DRAW FUNCTIONS
 
 function draw(event) {
   if (!isDrawing) return;
@@ -99,9 +96,7 @@ function stopDrawing(event) {
   draw(event);
 }
 
-/*
- *    Setter
- */
+//    SETTERS
 
 // Update the grid size and recreate the grid
 function setGridSize() {
@@ -127,9 +122,7 @@ function setGridSizeValue(value) {
   sizeValue.value = value;
 }
 
-/*
- *    Getter
- */
+//    GETTERS
 
 // The erase button have priority over other buttons and input
 function getDrawingColors() {
@@ -142,9 +135,7 @@ function getDrawingColors() {
   }
 }
 
-/*
- *    Effects
- */
+//    EFFECTS
 
 // Generate a random RGB color
 function rainbowEffect() {
@@ -154,18 +145,7 @@ function rainbowEffect() {
   return `rgb(${randomRed}, ${randomGreen}, ${randomBlue})`;
 }
 
-/*
- *    Clear grid
- */
-
-// Clear the grid by recreating it
-function clearGrid() {
-  createGrid();
-}
-
-/*
- *    Buttons toggles
- */
+//    BUTTON TOGGLES
 
 function toggleEraserButton() {
   toggleButton(eraserBtn);
@@ -179,9 +159,7 @@ function toggleRainbowButton() {
   toggleButton(rainbowBtn);
 }
 
-/*
- *    Helper functions
- */
+//    HELPER FUNCTIONS
 
 function toggleButton(button) {
   button.classList.toggle("active");
