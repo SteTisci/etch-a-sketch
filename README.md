@@ -24,7 +24,10 @@ All'apertura della pagina web, il gioco crea automaticamente una griglia di quad
 - **Eventi del Mouse**: Il programma rileva i clic e i movimenti del mouse, cambiando il colore dei quadrati in base alle impostazioni scelte.
 - **Bottoni**: I vari pulsanti modificano le impostazioni di disegno e l'aspetto della griglia.
 
+#
+
 Questo progetto offre un modo divertente e interattivo per disegnare su una griglia di quadrati sullo schermo, con diverse opzioni di personalizzazione.
+
 Progetto realizzato seguendo il corso "The Odin Project"
 
 <p><a href="https://stetisci.github.io/etch-a-sketch/">GitHub Pages</p>
