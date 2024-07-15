@@ -9,31 +9,46 @@
   </head>
   <body ondragstart="return false;" ondrop="return false;">
     <main class="main">
-      <div class="settings-container">
-        <div class="grid-size-container">
-          <label for="size-input">Grid size</label>
-          <input
-            type="range"
-            class="size-input"
-            id="size-input"
-            oninput="setGridSizeValue(this.value)"
-            value="16"
-            min="16"
-            max="64"
-            step="16"
-          />
-          <input type="text" class="size-value" value="16" readonly />
+      <h1 class="title">Etch-A-Sketch</h1>
+      <div class="container">
+        <div class="settings-container">
+          <div class="grid-size-container">
+            <label for="size-input">Grid size</label>
+            <input
+              type="range"
+              class="size-input"
+              id="size-input"
+              oninput="setGridSizeValue(this.value)"
+              value="16"
+              min="16"
+              max="64"
+              step="16"
+            />
+            <input type="text" class="size-value" value="16" readonly />
+          </div>
+          <div class="grid-colors-container">
+            <h3 class="colors-title">Colors</h3>
+            <input type="color" class="color-input" id="color-input" />
+            <button class="rainbow">Rainbow</button>
+          </div>
+          <button class="eraser">Eraser</button>
+          <button class="toggle-border active">Borders</button>
+          <button class="clear">Clear</button>
         </div>
-        <div class="grid-color-container">
-          <label for="color-input"></label>
-          <input type="color" class="color-input" id="color-input" />
-        </div>
-        <button class="rainbow">Rainbow</button>
-        <button class="eraser">Eraser</button>
-        <button class="toggle-border">Borders</button>
-        <button class="clear">Clear</button>
+        <div class="grid-container"></div>
       </div>
-      <div class="grid-container"></div>
     </main>
+    <footer class="footer">
+      <p class="author-name">2024 SteTisci</p>
+      <a href="https://github.com/SteTisci">
+        <img
+          src="image/github-logo.png"
+          class="github-logo"
+          alt="github logo"
+          width="30px"
+          height="auto"
+        />
+      </a>
+    </footer>
   </body>
 </html>
