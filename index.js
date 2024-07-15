@@ -1,11 +1,3 @@
-// #TODO: Aggiungere funzione shader, toggleShader e conversione RGB to RGBA per valore shader
-
-// #TODO: Se shader attivo, disattivare rainbow e viceversa
-
-// #TODO: Aggiungere button shader, titolo e miglioramento struttura a HTML
-
-// #TODO: Aggiungere foglio di stile per il design finale
-
 const DEFAULT_SIZE = 16;
 const DEFAULT_COLOR = "#000000";
 
@@ -52,7 +44,7 @@ function createCell(size) {
   cell.style.height = size;
 
   // Create cell without border if borderBtn is active
-  if (!isButtonActive(borderBtn)) {
+  if (isButtonActive(borderBtn)) {
     cell.classList.add("border");
   }
   return cell;
@@ -79,10 +71,10 @@ function clearGrid() {
 function draw(event) {
   if (!isDrawing) return;
 
-  const square = event.target.closest(".cell");
+  const cell = event.target.closest(".cell");
 
-  if (square) {
-    square.style.backgroundColor = getDrawingColors(); // Get the colors based on the current settings
+  if (cell) {
+    cell.style.backgroundColor = getDrawingColors(); // Get the colors based on the current settings
   }
 }
 
@@ -104,6 +96,11 @@ function setGridSize() {
   createGrid();
 }
 
+// Update the size value displayed
+function setGridSizeValue(value) {
+  sizeValue.value = value;
+}
+
 // Update the current color only if the eraser is not active
 function setCurrentColor(event) {
   currentColor = event.target.value;
@@ -115,11 +112,6 @@ function setBorder() {
     cell.classList.toggle("border");
   });
   toggleBorderButton();
-}
-
-// Update the size value displayed
-function setGridSizeValue(value) {
-  sizeValue.value = value;
 }
 
 //    GETTERS
