@@ -22,7 +22,7 @@ All'apertura della pagina web, il gioco crea automaticamente una griglia di quad
 
 - **Creazione della Griglia**: All'apertura della pagina, il programma genera una griglia di quadrati.
 - **Eventi del Mouse**: Il programma rileva i clic e i movimenti del mouse, cambiando il colore dei quadrati in base alle impostazioni scelte.
-- **Bottoni**: I vari pulsanti modificano le impostazioni di disegno e l'aspetto della griglia.
+- **Puslanti**: I vari pulsanti modificano le impostazioni di disegno e l'aspetto della griglia.
 
 #
 
