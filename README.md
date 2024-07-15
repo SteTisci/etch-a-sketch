@@ -61,6 +61,8 @@ Il programma "ascolta" quando si clicca e si muove il mouse sui quadrati, cambia
 
 In sintesi, questo progetto permette di disegnare in modo divertente e interattivo su una griglia di quadrati sullo schermo, con varie opzioni per personalizzare il disegno e la griglia stessa.
 
+##
+
 Progetto realizzato seguendo il corso "The Odin Project"
 
 <p><a href="https://stetisci.github.io/etch-a-sketch/">GitHub Pages</p>
