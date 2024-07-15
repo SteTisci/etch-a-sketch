@@ -6,80 +6,177 @@
     box-sizing: border-box;
 }
 
+html {
+    position: relative;
+    min-height: 100%;
+}
+
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    box-sizing: border-box;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: #181818;
+    margin-bottom: 100px;
 }
 
 .main {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.title {
+   font-family: 'Lobster', cursive;
+   font-size: 50px;
+   font-style: oblique;
+   color: #3EA6FF ;
+   margin: 30px 0 80px 0;
+}
+
+.container {
+    display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    height: 100vh;
-    width: 100vw;
 }
 
 .settings-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     width: 250px;
     height: 578px;
-    border: 1px solid black;
     border-radius: 10px;
     margin-right: 80px;
+    background-color: #262626;
 }
 
 .grid-size-container {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: column;
+    width: 100%;
+    border-radius: 10px;
+    color: #3EA6FF;
+    font-size: 1rem;
+    font-weight: 600;
+    padding-top: 20px;
+}
+
+label {
+    margin: 20px 0 15px;
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+    width: 200px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    margin-top: -8px; /* Centers thumb on the track */
+    background-color: #0087fd; 
+    width: 18px;
+    height: 18px;  
+    border-radius: 50px; 
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+    background: #3EA6FF;
+    height: 0.1rem;
+    border-radius: 10px;
 }
 
 .size-value {
     border: none;
     outline: none;
     text-align: center;
-    width: 25px;
+    background-color: transparent;
+    color: #3EA6FF;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-top: 15px;
+    cursor: default;
 }
 
-.grid-color-container {
+.grid-colors-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 100%;
+    padding: 50px 0 40px;
+    gap: 10px;
+}
+
+.colors-title {
+    padding-bottom: 5px;
+    color: #3EA6FF;
+    font-size: 1.1rem;
+    font-weight: 300;
+    cursor: default;
 }
 
 .color-input {
     appearance: none;
-    width: 150px;
+    width: 120px;
     height: 50px;
     border: none;
     background-color: transparent;
+    cursor: pointer;
 }
 
 .color-input::-webkit-color-swatch {
-    border: none;
+    border: 1px solid #3EA6FF;
     border-radius: 10px;
 }
 
-.rainbow,
+.rainbow {
+    width: 115px;
+    height: 40px;
+    outline: none;
+    border: 1px solid #3EA6FF;
+    border-radius: 10px;
+    margin-left: 1px;
+    background-color: transparent;
+    color: #3EA6FF;
+    font-weight: 500;
+}
+
+.eraser {
+    margin-top: 20px;
+}
+
 .clear,
 .toggle-border,
 .eraser {
-    width: 150px;
+    width: 70%;
     height: 40px;
-    border: 1px solid rgba(0, 0, 0, 0.5);
+    border: 1px solid #3EA6FF;
     border-radius: 10px;
+    background-color: transparent;
+    color: #3EA6FF;
+    margin-bottom: 30px;
+}
+
+button {
+    cursor: pointer;
 }
 
 button.active {
     background-color: #3EA6FF;
+    color: #000000;
+}
+
+button.clear:active {
+    background-color: #3EA6FF;
+    color: #000000;
 }
 
 .grid-container {
@@ -91,8 +188,9 @@ button.active {
     height: 578px;
     min-width: 578px;
     min-height: 578px;
-    border: 16px solid black;
+    border: 16px solid rgba(0, 0, 0, 85%);
     border-radius: 15px;
+    background-color: white;
 }
 
 .cell {
@@ -100,6 +198,24 @@ button.active {
 }
 
 .border {
-    border-bottom: 1px solid black;
-    border-right: 1px solid black;
+    border-bottom: 1px solid rgba(0, 0, 0, 50%);
+    border-right: 1px solid rgba(0, 0, 0, 50%);
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding-bottom: 5px;
+}
+
+.author-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #F2F2F2;
 }
