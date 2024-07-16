@@ -1,4 +1,4 @@
-const DEFAULT_SIZE = 16;
+const DEFAULT_SIZE = 20;
 const DEFAULT_COLOR = "#000000";
 
 let currentSize = DEFAULT_SIZE;
@@ -37,11 +37,9 @@ document.body.addEventListener("mouseup", () => (isDrawing = false));
 
 //    GRID CREATION
 
-function createCell(size) {
+function createCell() {
   const cell = document.createElement("div");
   cell.setAttribute("class", "cell");
-  cell.style.width = size;
-  cell.style.height = size;
 
   // Create cell without border if borderBtn is active
   if (isButtonActive(borderBtn)) {
@@ -53,10 +51,11 @@ function createCell(size) {
 // Create the grid with the specified size
 function createGrid() {
   container.innerHTML = ""; // Clear the container before creating the grid
-  const cellSize = `${100 / currentSize}%`;
+
+  container.style.setProperty("--grid-size", currentSize);
 
   for (let i = 0; i < currentSize * currentSize; i++) {
-    const cell = createCell(cellSize);
+    const cell = createCell();
     container.appendChild(cell);
   }
 }
