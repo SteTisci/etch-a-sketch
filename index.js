@@ -5,8 +5,6 @@ let currentSize = DEFAULT_SIZE;
 let currentColor = DEFAULT_COLOR;
 let isDrawing = false;
 
-//    COMPONENTS
-
 const container = document.querySelector(".grid-container");
 const sizeValue = document.querySelector(".size-value");
 const sizeInput = document.querySelector(".size-input");
@@ -15,8 +13,6 @@ const borderBtn = document.querySelector(".toggle-border");
 const rainbowBtn = document.querySelector(".rainbow");
 const clearBtn = document.querySelector(".clear");
 const eraserBtn = document.querySelector(".eraser");
-
-//    EVENT LISTENER
 
 // Create the grid when the page is fully loaded
 document.addEventListener("DOMContentLoaded", createGrid);
@@ -34,8 +30,6 @@ container.addEventListener("mousemove", draw);
 container.addEventListener("mouseup", stopDrawing);
 // Stop drawing if the mouse is released outside the container
 document.body.addEventListener("mouseup", () => (isDrawing = false));
-
-//    GRID CREATION
 
 function createCell() {
   const cell = document.createElement("div");
@@ -87,8 +81,6 @@ function stopDrawing(event) {
   draw(event);
 }
 
-//    SETTERS
-
 // Update the grid size and recreate the grid
 function setGridSize() {
   currentSize = Number(sizeValue.value);
@@ -113,8 +105,6 @@ function setBorder() {
   toggleBorderButton();
 }
 
-//    GETTERS
-
 // The erase button have priority over other buttons and input
 function getDrawingColors() {
   if (isButtonActive(eraserBtn)) {
@@ -126,8 +116,6 @@ function getDrawingColors() {
   }
 }
 
-//    EFFECTS
-
 // Generate a random RGB color
 function rainbowEffect() {
   const randomRed = Math.floor(Math.random() * 256);
@@ -135,8 +123,6 @@ function rainbowEffect() {
   const randomBlue = Math.floor(Math.random() * 256);
   return `rgb(${randomRed}, ${randomGreen}, ${randomBlue})`;
 }
-
-//    BUTTON TOGGLES
 
 function toggleEraserButton() {
   toggleButton(eraserBtn);
@@ -149,8 +135,6 @@ function toggleBorderButton() {
 function toggleRainbowButton() {
   toggleButton(rainbowBtn);
 }
-
-//    HELPER FUNCTIONS
 
 function toggleButton(button) {
   button.classList.toggle("active");
