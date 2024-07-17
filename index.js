@@ -59,8 +59,6 @@ function clearGrid() {
   createGrid();
 }
 
-//    DRAW FUNCTIONS
-
 function draw(event) {
   if (!isDrawing) return;
 
@@ -92,7 +90,6 @@ function setGridSizeValue(value) {
   sizeValue.value = value;
 }
 
-// Update the current color only if the eraser is not active
 function setCurrentColor(event) {
   currentColor = event.target.value;
 }
