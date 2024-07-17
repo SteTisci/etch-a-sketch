@@ -74,9 +74,8 @@ function startDrawing(event) {
   draw(event);
 }
 
-function stopDrawing(event) {
+function stopDrawing() {
   isDrawing = false;
-  draw(event);
 }
 
 // Update the grid size and recreate the grid
